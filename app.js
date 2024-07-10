@@ -13,7 +13,7 @@ require('./config/connection');
 
 app.use(
     cors({
-      origin: "https://sia-user-hx35.vercel.app/",
+      origin: "https://sia-user-hx35.vercel.app",
       methods: ["GET", "POST"],
       // credentials: true,
     })
