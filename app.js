@@ -11,7 +11,13 @@ require('./config/connection');
 
 // Load environment variables from .env file
 
-app.use(cors());
+app.use(
+    cors({
+      origin: ["https://sia-user.vercel.app/"],
+      methods: ["GET", "POST"],
+      credentials: true,
+    })
+  );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
