@@ -13,9 +13,9 @@ require('./config/connection');
 
 app.use(
     cors({
-        origin: '*',
-        methods: ['GET', 'POST', 'PATCH', 'PUT'],
-        credentials: true,
+      origin: ["https://sia-user-hx35.vercel.app/"],
+      methods: ["GET", "POST"],
+      credentials: true,
     })
   );
 app.use(express.json());
