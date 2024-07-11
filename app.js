@@ -13,7 +13,7 @@ require('./config/connection');
 
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN,, // Your frontend URL
+    origin: process.env.CLIENT_ORIGIN, // Your frontend URL
     methods: ["GET", "POST"],
     credentials: true,
   })
