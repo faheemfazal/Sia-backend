@@ -13,7 +13,7 @@ require('./config/connection');
 
 app.use(
   cors({
-    origin: "https://sia-user-hx35.vercel.app", // Your frontend URL
+    origin: process.env.CLIENT_ORIGIN,, // Your frontend URL
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://sia-user-hx35.vercel.app');
+  res.header('Access-Control-Allow-Origin', process.env.CLIENT_ORIGIN,);
   res.header('Access-Control-Allow-Methods', 'GET, POST');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
