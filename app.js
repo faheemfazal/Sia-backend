@@ -12,14 +12,7 @@ require('./config/connection');
 // Load environment variables from .env file
 
 app.use(
-  cors({
-    origin: "https://sia-user-hx35.vercel.app",
-    // origin: "https://localhost:3000",
-
-
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
+  cors()
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
