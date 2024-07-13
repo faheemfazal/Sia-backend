@@ -11,13 +11,33 @@ require('./config/connection');
 
 // Load environment variables from .env file
 
-app.use(
-  cors({
-    origin: process.env.CLIENT_ORIGIN, // Your frontend URL
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: process.env.CLIENT_ORIGIN, // Your frontend URL
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   })
+// );
+const allowedOrigins = [
+  process.env.CLIENT_ORIGIN, // Your first frontend URL
+  process.env.CLIENT_ORIGIN_2  // Your second frontend URL
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Check if the incoming request's origin is in the allowed origins array
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
