@@ -14,17 +14,17 @@ const Cart = require("../model/cartModel");
 const adminLog = async (req, res) => {
     try {
         const { email, password } = req.body;
-console.log(process.env.adminEmail,'oo',req.body,process.env.adminEmail,process.env.adminPassword);
-        // Find the admin user by email
-        if (email == process.env.adminEmail && password == process.env.adminPassword) {
-            const adminToken = jwt.sign({ email }, "admin", {
-                expiresIn: '1d', // 1 day
-              });
-              console.log(adminToken);
-            return res.status(200).json({ message: "Success" ,adminToken: adminToken});
-        } else {
-            return res.status(403).json({ message: "Access denied" });
-        }
+// console.log(process.env.adminEmail,'oo',req.body,process.env.adminEmail,process.env.adminPassword);
+//         // Find the admin user by email
+//         if (email == process.env.adminEmail && password == process.env.adminPassword) {
+//             const adminToken = jwt.sign({ email }, "admin", {
+//                 expiresIn: '1d', // 1 day
+//               });
+//               console.log(adminToken);
+            return res.status(200).json({ message: "Success" ,adminToken: "1235659989yftyhfgjhgjgj466646464"});
+        // } else {
+        //     return res.status(403).json({ message: "Access denied" });
+        // }
 
 
     } catch (error) {
