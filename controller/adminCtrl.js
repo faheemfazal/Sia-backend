@@ -20,6 +20,7 @@ console.log(process.env.adminEmail,'oo',req.body);
             const adminToken = jwt.sign({ email }, "admin", {
                 expiresIn: '1d', // 1 day
               });
+              console.log(adminToken);
             return res.status(200).json({ message: "Success" ,adminToken: adminToken});
         } else {
             return res.status(403).json({ message: "Access denied" });
