@@ -14,7 +14,7 @@ const Cart = require("../model/cartModel");
 const adminLog = async (req, res) => {
     try {
         const { email, password } = req.body;
-console.log(process.env.adminEmail,'oo',req.body);
+console.log(process.env.adminEmail,'oo',req.body,process.env.adminEmail,process.env.adminPassword);
         // Find the admin user by email
         if (email == process.env.adminEmail && password == process.env.adminPassword) {
             const adminToken = jwt.sign({ email }, "admin", {
