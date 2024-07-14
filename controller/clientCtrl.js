@@ -735,7 +735,10 @@ console.log(('hkhkhkjhkh'))
       totalAmount: totalAmount.toFixed(2),
       paymentMethod: paymentMethod,
       paymentImg:screenshot,
-      transationId:transactionId 
+      transationId:transactionId ,
+      gold:coins?.Gold,
+      platinum: coins?.Platinum,
+      silver:coins?.Silver
     });
 
     console.log(newOrder,'newOrder');

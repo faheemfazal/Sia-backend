@@ -23,6 +23,18 @@ const orderSchema = new Schema({
   totalAmount: { type: Number, required: true },
   status: { type: String, default: "Pending" },
   paymentMethod: { type: String, required: true },
+  gold:{
+    type:Number,
+    default:0
+},
+platinum:{
+    type:Number,
+    default:0
+},
+silver:{
+    type:Number,
+    default:0
+},
 
     transationId: {
         type: String,

@@ -360,21 +360,28 @@ const orderCancel = async (req, res) => {
     const { orderId } = req.query;
 
     try {
-        console.log('hereeeeeeeeeeeee')
         // Find the order by ID and update its status to "Cancelled"
         const order = await OrderCls.findByIdAndUpdate(
             orderId,
             { status: 'Cancelled' },
             { new: true }
         )
-        console.log(order, 'jkjkjkjk')
         if (!order) {
             return res.status(404).json({ message: 'Order not found' });
         }
-
+        const user = await clientCls.findByIdAndUpdate(
+            req.query.userId, 
+            { 
+                $inc: { 
+                    gold: -order.gold,
+                    platinum: -order.platinum,
+                    silver: -order.silver 
+                } 
+            }, 
+            { new: true }
+        );
         // Loop through each item in the order and update the product quantities
         for (const item of order.items) {
-            console.log('jkkhkhkh')
             const product = await productsCls.findById(item.product);
             console.log(product)
 
