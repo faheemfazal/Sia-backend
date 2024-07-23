@@ -15,23 +15,20 @@ const product_schema = mongoose.Schema({
     subCategory: {
         type: String,
         uppercase: true,
-        unique: true
+        // unique: true
     },
     itemBehaviour: {
         type: String,
         required: true,
         uppercase: true,
-
     },
     price: {
         type: Number,
-        
         required: true,
     },
     brand: {
         type: String,
     },
-
     quantity: {
         type: Number,
     },
