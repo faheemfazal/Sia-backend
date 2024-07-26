@@ -27,6 +27,8 @@ router
     .get('/clearcoin',checkJwt.checkJwt,adminClr.clearCoin)
     .get('/setdate',checkJwt.checkJwt,adminClr.setDate)
     .get('/openorclose',checkJwt.checkJwt,adminClr.openorclose)
+    .get('/postopenorclose',checkJwt.checkJwt,adminClr.postOpenorclose)
+
 
 
 module.exports = router;
