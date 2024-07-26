@@ -15,7 +15,7 @@ const product_schema = mongoose.Schema({
     subCategory: {
         type: String,
         uppercase: true,
-        // unique: true
+      
     },
     itemBehaviour: {
         type: String,
