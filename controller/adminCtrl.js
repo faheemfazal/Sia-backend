@@ -576,6 +576,8 @@ const openorclose=async(req,res)=>{
     
 const postOpenorclose=async(req,res)=>{
     try {
+        console.log('df2hg12dfmmmmhg12d');
+
         const shopOpenORclossed = await ShopDetail.findByIdAndUpdate({name:'admin',set:{openorclose:req.body.isONorOFF}})
         res.status(200).json({ message: `success`,openORclosed:shopOpenORclossed.openorclose });
     } catch (error) {
