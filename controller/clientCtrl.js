@@ -78,7 +78,7 @@ const otpVarification = async (req, res) => {
       
       res
         .status(200)
-        .json({ success: true, message: "OTP verified", token: token,name:'unknown' });
+        .json({ success: true, message: "OTP verified", token: token,name:userExist.name });
     } else {
       res.status(202).json({ success: false });
     }
