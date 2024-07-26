@@ -565,6 +565,7 @@ const setDate = async(req,res)=>{
 
 const openorclose=async(req,res)=>{
     try {
+        console.log('df2hg12dfhg12d');
         const shopOpenORclossed = await ShopDetail.findOne({name:'admin'})
         res.status(200).json({ message: `success`,openORclosed:shopOpenORclossed.openorclose });
     } catch (error) {
