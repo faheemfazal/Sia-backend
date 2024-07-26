@@ -52,7 +52,7 @@ const login = async (req, res) => {
 };
 
 const otpVarification = async (req, res) => {
-  const { inputValue, otp, mailOrPhone } = req.body;
+  const { inputValue, otp, mailOrPhone,name } = req.body;
 
   if (mailOrPhone == "email") {
     if (reqOtp == otp) {
@@ -61,6 +61,8 @@ const otpVarification = async (req, res) => {
         userExist = clientCls({
             phoneNumber: "",
             email: inputValue,
+            name:name
+
           });
           userExist.save();
       }
