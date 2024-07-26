@@ -43,7 +43,7 @@ const login = async (req, res) => {
       }
 
     }else{
-      res.status(202)
+      res.status(202).json({success:false,message:"user Name is not available"})
 
     }
   } catch (error) {
