@@ -578,8 +578,12 @@ const postOpenorclose=async(req,res)=>{
     try {
         console.log('df2hg12dfmmmmhg12d');
 
-        const shopOpenORclossed = await ShopDetail.findByIdAndUpdate({name:'admin',set:{openorclose:req.body.isONorOFF}})
-        res.status(200).json({ message: `success`,openORclosed:shopOpenORclossed.openorclose });
+        const result = await ShopDetail.updateOne(
+            { name: 'admin' }, // Filter criteria
+            { $set: { openorclose: isONorOFF } }, // Update data
+            { upsert: true } // Create a new document if no document matches the filter
+          );
+        res.status(200).json({ message: `success`,openORclosed:result.openorclose });
     } catch (error) {
         res.status(500).json({ message: "Internal Server Error" });
         
