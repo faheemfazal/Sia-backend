@@ -8,6 +8,7 @@ const OrderCls = require("../model/orderModel");
 const clientCls = require("../model/clientModel");
 const    jwt  =require('jsonwebtoken');
 const Cart = require("../model/cartModel");
+const ShopDetail = require("../model/openOrClose");
 
 
 
@@ -561,6 +562,26 @@ const setDate = async(req,res)=>{
     }
 
 }
+
+const openorclose=async(req,res)=>{
+    try {
+        const shopOpenORclossed = await ShopDetail.findOne({name:'admin'})
+        res.status(200).json({ message: `success`,openORclosed:shopOpenORclossed.openorclose });
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" });
+        
+    }
+}
+    
+const postOpenorclose=async(req,res)=>{
+    try {
+        const shopOpenORclossed = await ShopDetail.findByIdAndUpdate({name:'admin',set:{openorclose:req.body.isONorOFF}})
+        res.status(200).json({ message: `success`,openORclosed:shopOpenORclossed.openorclose });
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" });
+        
+    }
+}
     
 
             
@@ -590,6 +611,8 @@ module.exports = {
     revenueUser,
     salesReport,
 clearCoin,
-setDate
+setDate,
+openorclose,
+postOpenorclose
 
 }
