@@ -4,6 +4,8 @@ const clientCls = require("../model/clientModel");
 const categoryCls = require("../model/categoryModel");
 const cartCls = require("../model/cartModel");
 const OrderCls = require("../model/orderModel");
+const ShopDetail = require("../model/openOrClose");
+
 const { nodeMailer } = require("../utilities/nodeMailer");
 const { verifyotp, sendotp } = require("../utilities/twilio"); // Import your Twilio functions
 const moment = require('moment');
@@ -780,6 +782,12 @@ console.log(('hkhkhkjhkh'))
 };
 
 const checkout = async (req, res) => {
+
+  const shopOpenORclossed = await ShopDetail.findOne({name:'admin'})
+  if(!shopOpenORclossed.openorclose){
+   return res .status(201)
+    .json({ message: "Shop Closed" });
+  }
 
   const find_cart = await cartCls
       .findOne({ owner: req.id })
