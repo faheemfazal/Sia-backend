@@ -574,22 +574,23 @@ const openorclose=async(req,res)=>{
     }
 }
     
-const postOpenorclose=async(req,res)=>{
+const postOpenorclose = async (req, res) => {
     try {
-        console.log('df2hg12dfmmmmhg12d',req.body);
-
-        const result = await ShopDetail.updateOne(
-            { name: 'admin' }, // Filter criteria
-            { $set: { openorclose: !req.body.isONorOFF } }, // Update data
-            { upsert: true,returnDocument: 'after' } // Create a new document if no document matches the filter
-          );
-          console.log(result,'result');
-        res.status(200).json({ message: 'success',openORclosed:result.openorclose });
+      console.log('df2hg12dfmmmmhg12d', req.body);
+  
+      const result = await ShopDetail.findOneAndUpdate(
+        { name: 'admin' }, // Filter criteria
+        { $set: { openorclose: !req.body.isONorOFF } }, // Update data
+        { upsert: true, new: true } // Create a new document if no document matches the filter and return the updated document
+      );
+      console.log(result, 'result');
+      res.status(200).json({ message: 'success', openORclosed: result.openorclose });
     } catch (error) {
-        res.status(500).json({ message: "Internal Server Error" });
-        
+      console.error('Error updating shop status:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-}
+  };
+  
     
 
             
