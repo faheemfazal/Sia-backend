@@ -1047,6 +1047,57 @@ const getCartDetailcheckout = async (req, res) => {
 
 
 
+const cancelOrder = async (req, res) => {
+  const { orderId } = req.query;
+
+  try {
+      // Find the order by ID and update its status to "Cancelled"
+      const order = await OrderCls.findByIdAndUpdate(
+          orderId,
+          { status: 'Cancelled' },
+          { new: true }
+      )
+      if (!order) {
+          return res.status(404).json({ message: 'Order not found' });
+      }
+      const user = await clientCls.findByIdAndUpdate(
+          req.query.userId, 
+          { 
+              $inc: { 
+                  gold: -order.gold,
+                  platinum: -order.platinum,
+                  silver: -order.silver 
+              } 
+          }, 
+          { new: true }
+      );
+      // Loop through each item in the order and update the product quantities
+      for (const item of order.items) {
+          const product = await productsCls.findById(item.product);
+          console.log(product)
+
+          if (!product) {
+              return res.status(404).json({ message: `Product not found for ID: ${item.product}` });
+          }
+          const gramsToKilograms = (grams) => {
+              return grams / 1000;
+          }
+
+          if (item.unitType === 'G') {
+              product.quantity += gramsToKilograms(item.quantity);
+          } else {
+              product.quantity += item.quantity;
+          }
+
+          await product.save();
+      }
+
+      res.status(200).json(order);
+  } catch (error) {
+      res.status(500).json({ message: 'Error cancelling order', error });
+  }
+}
+
 module.exports = {
   getProducts,
   getlocation,
@@ -1066,5 +1117,6 @@ module.exports = {
   otpVarification,
   getDate,
   checkout,
-  getCartDetailcheckout
+  getCartDetailcheckout,
+  cancelOrder
 };

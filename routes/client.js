@@ -37,6 +37,7 @@ const checkJwt = require('../middleware/clientAuth')
     .post('/varifyotp', clientClr.otpVarification)
     .get('/getdate',checkJwt.checkJwt,clientClr.getDate)
     .get('/cartdetail-checkout',checkJwt.checkJwt,clientClr.getCartDetailcheckout)
+    .get('/cancelorder',checkJwt.checkJwt,clientClr.cancelOrder)
    
 
 
