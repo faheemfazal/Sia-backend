@@ -1057,11 +1057,12 @@ const cancelOrder = async (req, res) => {
           { status: 'Cancelled' },
           { new: true }
       )
+      console.log(order);
       if (!order) {
           return res.status(404).json({ message: 'Order not found' });
       }
       const user = await clientCls.findByIdAndUpdate(
-          req.query.userId, 
+          req.id, 
           { 
               $inc: { 
                   gold: -order.gold,
