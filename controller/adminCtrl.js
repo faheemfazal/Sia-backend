@@ -580,7 +580,7 @@ const postOpenorclose=async(req,res)=>{
 
         const result = await ShopDetail.updateOne(
             { name: 'admin' }, // Filter criteria
-            { $set: { openorclose: req.body.isONorOFF } }, // Update data
+            { $set: { openorclose: !req.body.isONorOFF } }, // Update data
             { upsert: true } // Create a new document if no document matches the filter
           );
         res.status(200).json({ message: `success`,openORclosed:result.openorclose });
