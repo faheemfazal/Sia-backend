@@ -986,9 +986,12 @@ const getDate = async (req, res) => {
       if (!client) {
           return res.status(404).json({ message: 'Client not found' });
       }
-      const date = client.coinDate;
-      const oneMonthLater = moment(date).add(1, 'months').format('MMMM D, YYYY');
+      let oneMonthLater;
+     if( client.coinDate){
+       oneMonthLater = moment(client.coinDate).add(1, 'months').format('MMMM D, YYYY');
       // Send response with formatted date
+     }
+   
       return res.status(200).json({ date:oneMonthLater,client });
   } catch (e) {
       console.log(e);
