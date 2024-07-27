@@ -786,7 +786,7 @@ const checkout = async (req, res) => {
   const shopOpenORclossed = await ShopDetail.findOne({name:'admin'})
   if(!shopOpenORclossed.openorclose){
    return res .status(201)
-    .json({ message: "Shop Closed" });
+    .json({ message: "Shop is Closed" });
   }
 
   const find_cart = await cartCls
@@ -1002,6 +1002,11 @@ const getDate = async (req, res) => {
 
 const getCartDetailcheckout = async (req, res) => {
   try {
+    const shopOpenORclossed = await ShopDetail.findOne({name:'admin'})
+    if(!shopOpenORclossed.openorclose){
+     return res .status(201)
+      .json({ message: "Shop is Closed" });
+    }
     const find_cart = await cartCls
       .findOne({ owner: req.id })
       .populate(
