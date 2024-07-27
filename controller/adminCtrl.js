@@ -583,7 +583,8 @@ const postOpenorclose=async(req,res)=>{
             { $set: { openorclose: !req.body.isONorOFF } }, // Update data
             { upsert: true } // Create a new document if no document matches the filter
           );
-        res.status(200).json({ message: `success`,openORclosed:result.openorclose });
+          console.log(result,'result');
+        res.status(200).json({ message: 'success',openORclosed:result.openorclose });
     } catch (error) {
         res.status(500).json({ message: "Internal Server Error" });
         
