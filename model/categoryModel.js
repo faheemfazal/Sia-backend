@@ -10,7 +10,6 @@ const categorySchema = new mongoose.Schema({
     subCategory: {
         type: [String],  // Define subCategory as an array of strings
         uppercase: true,
-        unique: true
     },
     block: {
         type: Boolean,
