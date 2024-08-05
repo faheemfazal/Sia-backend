@@ -606,7 +606,7 @@ const postBanner = async (req, res) => {
     }
 
     // Create a new banner
-    const newBanner = new Banner({ BannerImage });
+    const newBanner = new Banner({ bannerImage:BannerImage });
     console.log(newBanner,'newBanner');
     await newBanner.save().then((res)=>{
         console.log(res,'res');
