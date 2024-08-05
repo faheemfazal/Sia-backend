@@ -28,6 +28,12 @@ router
     .get('/setdate',checkJwt.checkJwt,adminClr.setDate)
     .get('/openorclose',checkJwt.checkJwt,adminClr.openorclose)
     .post('/postopenorclose',checkJwt.checkJwt,adminClr.postOpenorclose)
+    .post('/addBanner',checkJwt.checkJwt,adminClr.postBanner)
+    .get('/getBanner',checkJwt.checkJwt,adminClr.getBanners)
+    .get('/deleteBanner',checkJwt.checkJwt,adminClr.deleteBanner)
+
+
+
 
 
 

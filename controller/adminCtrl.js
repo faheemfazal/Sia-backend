@@ -8,6 +8,8 @@ const OrderCls = require("../model/orderModel");
 const clientCls = require("../model/clientModel");
 const    jwt  =require('jsonwebtoken');
 const Cart = require("../model/cartModel");
+const Banner = require("../model/bannerModel");
+
 const ShopDetail = require("../model/openOrClose");
 
 
@@ -591,13 +593,67 @@ const postOpenorclose = async (req, res) => {
     }
   };
   
+const postBanner = async (req, res) => {
     
+  try {
+    const { bannerImage } = req.body;
+
+    // Check if bannerImage is provided
+    if (!bannerImage) {
+      return res.status(400).json({ message: 'Banner image is required' });
+    }
+
+    // Create a new banner
+    const newBanner = new Banner({ bannerImage });
+    await newBanner.save();
+
+    // Send a success response
+    return res.status(200).json({ message: 'Banner created successfully', banner: newBanner });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'An error occurred while creating the banner' });
+  }
 
             
     
+}
 
+const getBanners = async (req, res) => {
 
+try {
+    const banners = await Banner.find(); // Retrieve all banners from the database
 
+    if (banners.length === 0) {
+      return res.status(204).json({ message: 'No banners found' });
+    }
+
+    // Send success response with the banners
+    return res.status(200).json({ banner: banners });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'An error occurred while fetching the banners' });
+  }
+
+}
+
+const deleteBanner = async (req, res) => {
+    const { id } = req.query;
+
+    try {
+      const deletedBanner = await Banner.findByIdAndDelete(id);
+  
+      if (!deletedBanner) {
+        return res.status(204).json({ message: 'Banner not found' });
+      }
+  
+      // Send success response
+      return res.status(200).json({ message: 'Banner deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'An error occurred while deleting the banner' });
+    }
+    
+    }
 
 
 module.exports = {
@@ -622,6 +678,9 @@ module.exports = {
 clearCoin,
 setDate,
 openorclose,
-postOpenorclose
+postOpenorclose,
+postBanner,
+getBanners,
+deleteBanner
 
 }
