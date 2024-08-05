@@ -608,15 +608,13 @@ const postBanner = async (req, res) => {
     // Create a new banner
     const newBanner = new Banner({ bannerImage:BannerImage });
     console.log(newBanner,'newBanner');
-    await newBanner.save().then((res)=>{
+    await newBanner.save()
         console.log(res,'res');
         console.log(newBanner,'newBanner');
 
         // Send a success response
         return res.status(200).json({ message: 'Banner created successfully', banner: newBanner });
-    }).catch((err)=>{
-        console.log(err,'err');
-    })
+   
 
   
   } catch (error) {
