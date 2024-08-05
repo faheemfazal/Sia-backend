@@ -38,6 +38,8 @@ const checkJwt = require('../middleware/clientAuth')
     .get('/getdate',checkJwt.checkJwt,clientClr.getDate)
     .get('/cartdetail-checkout',checkJwt.checkJwt,clientClr.getCartDetailcheckout)
     .get('/cancelorder',checkJwt.checkJwt,clientClr.cancelOrder)
+    .get('/getBanne',checkJwt.checkJwt,clientClr.getBanners)
+
    
 
 

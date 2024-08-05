@@ -12,6 +12,7 @@ const moment = require('moment');
 
 
 const jwt = require("jsonwebtoken");
+const Banner = require("../model/bannerModel");
 
 var reqOtp;
 
@@ -1099,6 +1100,24 @@ const cancelOrder = async (req, res) => {
   }
 }
 
+const getBanners = async (req, res) => {
+
+  try {
+      const banners = await Banner.find(); // Retrieve all banners from the database
+  
+      if (banners.length === 0) {
+        return res.status(204).json({ message: 'No banners found' });
+      }
+  
+      // Send success response with the banners
+      return res.status(200).json({ banner: banners });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'An error occurred while fetching the banners' });
+    }
+  
+  }
+
 module.exports = {
   getProducts,
   getlocation,
@@ -1119,5 +1138,6 @@ module.exports = {
   getDate,
   checkout,
   getCartDetailcheckout,
-  cancelOrder
+  cancelOrder,
+  getBanners
 };
