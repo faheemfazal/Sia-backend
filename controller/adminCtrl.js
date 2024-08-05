@@ -598,7 +598,7 @@ const postBanner = async (req, res) => {
   try {
     const { bannerImage } = req.body;
 
-    console.log( req.body,'oooooo');
+    console.log( req.body,'oooooo',bannerImage);
 
     // Check if bannerImage is provided
     if (!bannerImage) {
@@ -608,12 +608,17 @@ const postBanner = async (req, res) => {
     // Create a new banner
     const newBanner = new Banner({ bannerImage });
     console.log(newBanner,'newBanner');
-    await newBanner.save();
+    await newBanner.save().then((res)=>{
+        console.log(res,'res');
+        console.log(newBanner,'newBanner');
 
-    console.log(newBanner,'newBanner');
+        // Send a success response
+        return res.status(200).json({ message: 'Banner created successfully', banner: newBanner });
+    }).catch((err)=>{
+        console.log(err,'err');
+    })
 
-    // Send a success response
-    return res.status(200).json({ message: 'Banner created successfully', banner: newBanner });
+  
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'An error occurred while creating the banner' });
