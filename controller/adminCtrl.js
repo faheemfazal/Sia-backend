@@ -598,6 +598,8 @@ const postBanner = async (req, res) => {
   try {
     const { bannerImage } = req.body;
 
+    console.log( req.body,'oooooo');
+
     // Check if bannerImage is provided
     if (!bannerImage) {
       return res.status(400).json({ message: 'Banner image is required' });
@@ -606,6 +608,8 @@ const postBanner = async (req, res) => {
     // Create a new banner
     const newBanner = new Banner({ bannerImage });
     await newBanner.save();
+
+    console.log(newBanner,'newBanner');
 
     // Send a success response
     return res.status(200).json({ message: 'Banner created successfully', banner: newBanner });
