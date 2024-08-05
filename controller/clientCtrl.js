@@ -1109,6 +1109,7 @@ const getBanners = async (req, res) => {
         return res.status(204).json({ message: 'No banners found' });
       }
   
+      console.log(banners,'banners');
       // Send success response with the banners
       return res.status(200).json({ banner: banners });
     } catch (error) {
