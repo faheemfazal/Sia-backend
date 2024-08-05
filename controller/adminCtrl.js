@@ -596,17 +596,17 @@ const postOpenorclose = async (req, res) => {
 const postBanner = async (req, res) => {
     
   try {
-    const { bannerImage } = req.body;
+    const { BannerImage } = req.body;
 
-    console.log( req.body,'oooooo',bannerImage);
+    console.log( req.body,'oooooo',BannerImage);
 
     // Check if bannerImage is provided
-    if (!bannerImage) {
+    if (!BannerImage) {
       return res.status(400).json({ message: 'Banner image is required' });
     }
 
     // Create a new banner
-    const newBanner = new Banner({ bannerImage });
+    const newBanner = new Banner({ BannerImage });
     console.log(newBanner,'newBanner');
     await newBanner.save().then((res)=>{
         console.log(res,'res');
