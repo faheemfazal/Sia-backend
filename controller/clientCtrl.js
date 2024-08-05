@@ -4,6 +4,7 @@ const clientCls = require("../model/clientModel");
 const categoryCls = require("../model/categoryModel");
 const cartCls = require("../model/cartModel");
 const OrderCls = require("../model/orderModel");
+const Banner = require("../model/bannerModel");
 const ShopDetail = require("../model/openOrClose");
 
 const { nodeMailer } = require("../utilities/nodeMailer");
@@ -12,7 +13,6 @@ const moment = require('moment');
 
 
 const jwt = require("jsonwebtoken");
-const Banner = require("../model/bannerModel");
 
 var reqOtp;
 
@@ -1103,6 +1103,7 @@ const cancelOrder = async (req, res) => {
 const getBanners = async (req, res) => {
 
   try {
+console.log(';;;;;;;;...');
       const banners = await Banner.find(); // Retrieve all banners from the database
   
       if (banners.length === 0) {
