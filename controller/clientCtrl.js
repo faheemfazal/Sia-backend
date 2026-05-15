@@ -29,7 +29,7 @@ const login = async (req, res) => {
     }
     if(userExist ||req.body.name){
       if (mailOrPhone == "email") {
-        const otp = nodeMailer(inputValue);
+        const otp = await nodeMailer(inputValue);
         // req.otp = otp
         reqOtp = otp;
         console.log('otp sended successfully');
