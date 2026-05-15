@@ -18,9 +18,9 @@ var reqOtp;
 
 const login = async (req, res) => {
   try {
-    console.log(req,'oo');
+    console.log(req.body,'ooiiiiiiii');
     const { inputValue, mailOrPhone } = req.body;
-    console.log(req.body, inputValue, mailOrPhone,';;');
+    console.log(req.body, inputValue, mailOrPhone,';;4545454545');
     let userExist;
     if (mailOrPhone == "email") {
       userExist = await clientCls.findOne({ email: inputValue });
@@ -32,7 +32,7 @@ const login = async (req, res) => {
         const otp = nodeMailer(inputValue);
         // req.otp = otp
         reqOtp = otp;
-        // console.log(req.otp,'ppp');
+        console.log('otp sended successfully');
         return res.status(200).json({ success: true, message: "Success" });
       } else {
         const data = await sendotp(inputValue);
