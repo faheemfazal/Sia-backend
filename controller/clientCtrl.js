@@ -33,7 +33,7 @@ const login = async (req, res) => {
         // req.otp = otp
         reqOtp = otp;
         console.log('otp sended successfully');
-        return res.status(200).json({ success: true, message: "Success" });
+        return res.status(200).json({ success: true, message: "Success",reqOtp });
       } else {
         const data = await sendotp(inputValue);
         res
